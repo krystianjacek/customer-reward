@@ -9,15 +9,25 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<packaging>pom</packaging>
-	<groupId>com.krystianjacek</groupId>
+	<groupId>com.jacek</groupId>
 	<artifactId>customer-reward-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>customer-reward-app</name>
+	<name>Customer Reward</name>
 	<description>Customer Reward Application</description>
 
+	<modules>
+		<module>reward-webapp</module>
+	</modules>
+
 	<properties>
+		<version.lombok>1.18.18</version.lombok>
+		<version.mapstruct>1.4.2.Final</version.mapstruct>
+		<version.mapstruct-lombok>0.2.0</version.mapstruct-lombok>
+		<version.springfox>3.0.0</version.springfox>
+		<version.swagger-ui>3.0.0</version.swagger-ui>
 
 		<java.version>15</java.version>
+
 		<maven.compile.source>15</maven.compile.source>
 		<maven.compile.target>15</maven.compile.target>
 		<maven.compile.deprecation>true</maven.compile.deprecation>
@@ -30,54 +40,25 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${version.springfox}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${version.swagger-ui}</version>
+		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<!--			<plugin>-->
-			<!--				<artifactId>maven-compiler-plugin</artifactId>-->
-			<!--				<version>3.8.1</version>-->
-			<!--				<configuration>-->
-			<!--					<encoding>${project.build.sourceEncoding}</encoding>-->
-			<!--					<source>${maven.compile.source}</source>-->
-			<!--					<target>${maven.compile.target}</target>-->
-			<!--					<optimize>${maven.compile.optimize}</optimize>-->
-			<!--					<showDeprecation>${maven.compile.deprecation}</showDeprecation>-->
-			<!--					<showWarnings>${maven.compile.warnings}</showWarnings>-->
-			<!--					<compilerArgument>-Xlint:all</compilerArgument>-->
-			<!--					<annotationProcessorPaths>-->
-			<!--						<path>-->
-			<!--							<groupId>org.mapstruct</groupId>-->
-			<!--							<artifactId>mapstruct-processor</artifactId>-->
-			<!--							<version>${mapstruct.version}</version>-->
-			<!--						</path>-->
-			<!--					</annotationProcessorPaths>-->
-			<!--					<compilerArgs>-->
-			<!--						<compilerArg>-Amapstruct.defaultComponentModel=spring</compilerArg>-->
-			<!--					</compilerArgs>-->
-			<!--				</configuration>-->
-			<!--			</plugin>-->
-		</plugins>
-	</build>
 
 </project>

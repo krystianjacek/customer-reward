@@ -9,30 +9,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jacek.customerreward.webapp.backend.controller.dto.TransactionDto;
+import com.jacek.customerreward.webapp.backend.controller.dto.CustomerDto;
+import com.jacek.customerreward.webapp.backend.controller.mapper.CustomerDtoMapper;
 import com.jacek.customerreward.webapp.backend.model.Transaction;
 import com.jacek.customerreward.webapp.backend.service.CustomerService;
-import com.jacek.customerreward.webapp.backend.service.TransactionService;
 
 @RestController
-@RequestMapping("/api/internal/transaction")
-public class TransactionController {
+@RequestMapping("/api/internal/customer")
+public class CustomerController {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(TransactionController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
 	
-	private final TransactionService transactionService;
+	private final CustomerService customerService;
 	
-	public TransactionController(final CustomerService customerService,
-									final TransactionService transactionService) {
-		this.transactionService = transactionService;
+	private final CustomerDtoMapper customerDtoMapper;
+	
+	public CustomerController(final CustomerService customerService,
+							  final CustomerDtoMapper customerDtoMapper) {
+		this.customerService = customerService;
+		this.customerDtoMapper = customerDtoMapper;
 	}
 	
 	@PostMapping(
-			consumes = MediaType.APPLICATION_XML_VALUE,
-			produces = MediaType.APPLICATION_XML_VALUE
+			consumes = MediaType.APPLICATION_JSON_VALUE
 	)
 	@ResponseBody
-	public void createTransaction(@RequestBody final TransactionDto transaction) {
-		this.transactionService.createCustomerTransaction(new Transaction(), 1l);
+	public void addCustomer(@RequestBody final CustomerDto customerDto) {
+		this.customerService.addCustomer(this.customerDtoMapper.map(customerDto));
 	}
 }
