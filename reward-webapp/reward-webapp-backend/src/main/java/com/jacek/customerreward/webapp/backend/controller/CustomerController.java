@@ -1,17 +1,21 @@
 package com.jacek.customerreward.webapp.backend.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jacek.customerreward.webapp.backend.controller.dto.CustomerDto;
 import com.jacek.customerreward.webapp.backend.controller.mapper.CustomerDtoMapper;
-import com.jacek.customerreward.webapp.backend.model.Transaction;
 import com.jacek.customerreward.webapp.backend.service.CustomerService;
 
 @RestController
@@ -33,8 +37,15 @@ public class CustomerController {
 	@PostMapping(
 			consumes = MediaType.APPLICATION_JSON_VALUE
 	)
-	@ResponseBody
+	@ResponseStatus(HttpStatus.CREATED)
 	public void addCustomer(@RequestBody final CustomerDto customerDto) {
 		this.customerService.addCustomer(this.customerDtoMapper.map(customerDto));
+	}
+	
+	@GetMapping
+	@ResponseBody
+	@ResponseStatus(HttpStatus.OK)
+	public List<CustomerDto> getAllCustomers() {
+		return this.customerDtoMapper.map(this.customerService.getAllCustomers());
 	}
 }

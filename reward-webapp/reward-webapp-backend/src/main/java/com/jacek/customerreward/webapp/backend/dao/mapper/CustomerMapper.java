@@ -1,5 +1,7 @@
 package com.jacek.customerreward.webapp.backend.dao.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -19,7 +21,9 @@ public interface CustomerMapper {
 	
 	@Mappings({
 			@Mapping(target = "userName", source = "userName"),
-			@Mapping(target = "transactions", source = "transactionEntities")
+			@Mapping(target = "transactions", source = "transactions")
 	})
 	Customer map(final CustomerEntity customer);
+	
+	List<Customer> map(final List<CustomerEntity> customer);
 }

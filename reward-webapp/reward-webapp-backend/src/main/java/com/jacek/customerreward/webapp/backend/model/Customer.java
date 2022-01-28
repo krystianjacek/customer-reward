@@ -19,8 +19,4 @@ public class Customer {
 	private String userName;
 	
 	List<Transaction> transactions;
-	
-	public void addTransaction(final Transaction transaction) {
-		this.transactions.add(transaction);
-	}
 }

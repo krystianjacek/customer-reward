@@ -37,5 +37,5 @@ public class CustomerEntity {
 	
 	@OneToMany
 	@JoinColumn(name = "fk_customer")
-	private Set<TransactionEntity> transactionEntities = new HashSet<>();
+	private Set<TransactionEntity> transactions = new HashSet<>();
 }

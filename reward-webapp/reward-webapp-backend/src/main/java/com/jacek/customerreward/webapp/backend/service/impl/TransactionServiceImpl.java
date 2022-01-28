@@ -1,14 +1,15 @@
 package com.jacek.customerreward.webapp.backend.service.impl;
 
+import java.time.Instant;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jacek.customerreward.webapp.backend.dao.entity.TransactionEntity;
-import com.jacek.customerreward.webapp.backend.dao.mapper.CustomerMapper;
 import com.jacek.customerreward.webapp.backend.dao.mapper.TransactionMapper;
 import com.jacek.customerreward.webapp.backend.dao.repository.CustomerRepository;
 import com.jacek.customerreward.webapp.backend.dao.repository.TransactionRepository;
@@ -26,31 +27,30 @@ public class TransactionServiceImpl implements TransactionService {
 	
 	private final TransactionMapper transactionMapper;
 	
-	private final CustomerMapper customerMapper;
-	
 	public TransactionServiceImpl(final TransactionRepository transactionRepository,
 								  final CustomerRepository customerRepository,
-								  final TransactionMapper transactionMapper,
-								  final CustomerMapper customerMapper) {
+								  final TransactionMapper transactionMapper) {
 		this.transactionRepository = transactionRepository;
 		this.customerRepository = customerRepository;
 		this.transactionMapper = transactionMapper;
-		this.customerMapper = customerMapper;
 	}
 	
 	@Override
 	@Transactional
 	public void addCustomerTransaction(final Transaction transaction, final long customerId) {
-//				final Customer customer = this.customerMapper.map(this.customerRepository.getOne(customerId));
-		final TransactionEntity transactionEntity = TransactionEntity.TransactionEntityBuilder
-				.newInstance()
+		final TransactionEntity transactionEntity = TransactionEntity
+				.builder()
 				.price(transaction.getPrice())
-				.customer(this.customerRepository.getOne(customerId))
+				.date(transaction.getDate() != null ? transaction.getDate() : Instant.now())
+				.customer(this.customerRepository.findById(customerId).orElseThrow(RuntimeException::new))
 				.build();
-//		transactionEntity.setCustomer(this.customerRepository.getOne(customerId));
-		//		customer.addTransaction(transaction);
+		
 		this.transactionRepository.save(transactionEntity);
-		//		this.transactionRepository.
+	}
+	
+	@Override
+	public List<Transaction> getAllTransactions() {
+		return this.transactionMapper.map(this.transactionRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
 	}
 	
 	@Override

@@ -1,7 +1,10 @@
 package com.jacek.customerreward.webapp.backend.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,5 +32,10 @@ public class CustomerServiceImpl implements CustomerService {
 	@Transactional
 	public void addCustomer(final Customer customer) {
 		this.customerRepository.save(this.customerMapper.map(customer));
+	}
+	
+	@Override
+	public List<Customer> getAllCustomers() {
+		return this.customerMapper.map(this.customerRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
 	}
 }

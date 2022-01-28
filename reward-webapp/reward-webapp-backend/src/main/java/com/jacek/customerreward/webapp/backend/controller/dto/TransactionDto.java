@@ -1,6 +1,7 @@
 package com.jacek.customerreward.webapp.backend.controller.dto;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -18,4 +19,6 @@ public class TransactionDto {
 	private long id;
 	
 	private BigDecimal price;
+	
+	private Instant date;
 }
