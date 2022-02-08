@@ -20,7 +20,8 @@ public interface TransactionMapper {
 	
 	@Mappings({
 			@Mapping(target = "id", source = "id"),
-			@Mapping(target = "price", source = "price")
+			@Mapping(target = "price", source = "price"),
+			@Mapping(target = "customer", ignore = true)
 	})
 	TransactionEntity map(final Transaction transaction);
 	
