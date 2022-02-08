@@ -20,7 +20,7 @@ public interface CustomerMapper {
 	CustomerEntity map(final Customer customer);
 	
 	@Mappings({
-			@Mapping(target = "transactions", source = "transactionEntities")
+			@Mapping(target = "transactions", source = "transactions")
 	})
 	Customer map(final CustomerEntity customer);
 	

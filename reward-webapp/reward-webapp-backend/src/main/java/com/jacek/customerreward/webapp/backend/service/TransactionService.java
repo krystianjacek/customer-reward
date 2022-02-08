@@ -8,6 +8,8 @@ public interface TransactionService {
 	
 	void addCustomerTransaction(final Transaction transaction, final long customerId);
 	
+	List<Transaction> getAllTransactions();
+	
 	List<Transaction> getAllCustomerTransactions(final long customerId);
 	
 	List<Transaction> getLastMonthCustomerTransactions(final long customerId);

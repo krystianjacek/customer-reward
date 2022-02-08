@@ -9,7 +9,7 @@ import org.mapstruct.Mappings;
 import com.jacek.customerreward.webapp.backend.dao.entity.TransactionEntity;
 import com.jacek.customerreward.webapp.backend.model.Transaction;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = CustomerMapper.class)
 public interface TransactionMapper {
 	
 	@Mappings({

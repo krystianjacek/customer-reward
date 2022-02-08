@@ -1,6 +1,7 @@
 package com.jacek.customerreward.webapp.backend.controller.dto;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,5 @@ public class TransactionDto {
 	
 	private BigDecimal price;
 	
-	//FIXME:
-	//add date of transaction
+	private Instant date;
 }

@@ -22,4 +22,6 @@ public class CustomerDto {
 	private String lastName;
 	
 	private List<TransactionDto> transactions;
+	
+	private List<TransactionDto> transactions;
 }
