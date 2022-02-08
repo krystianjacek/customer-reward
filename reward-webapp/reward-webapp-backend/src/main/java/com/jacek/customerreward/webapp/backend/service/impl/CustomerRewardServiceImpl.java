@@ -1,6 +1,5 @@
 package com.jacek.customerreward.webapp.backend.service.impl;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 

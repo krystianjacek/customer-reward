@@ -13,6 +13,7 @@ import com.jacek.customerreward.webapp.backend.dao.entity.TransactionEntity;
 import com.jacek.customerreward.webapp.backend.dao.mapper.TransactionMapper;
 import com.jacek.customerreward.webapp.backend.dao.repository.CustomerRepository;
 import com.jacek.customerreward.webapp.backend.dao.repository.TransactionRepository;
+import com.jacek.customerreward.webapp.backend.exception.UserNotFoundException;
 import com.jacek.customerreward.webapp.backend.model.Transaction;
 import com.jacek.customerreward.webapp.backend.service.TransactionService;
 
@@ -42,7 +43,7 @@ public class TransactionServiceImpl implements TransactionService {
 				.builder()
 				.price(transaction.getPrice())
 				.date(transaction.getDate() != null ? transaction.getDate() : Instant.now())
-				.customer(this.customerRepository.findById(customerId).orElseThrow(RuntimeException::new))
+				.customer(this.customerRepository.findById(customerId).orElseThrow(() -> new UserNotFoundException("User with id " + customerId + " not found!")))
 				.build();
 		
 		this.transactionRepository.save(transactionEntity);

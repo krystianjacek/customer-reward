@@ -41,6 +41,7 @@ public class TransactionController {
 	)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void addTransaction(@RequestBody final TransactionDto transactionDto, @PathVariable final long customerId) {
+		LOGGER.debug("Add new transaction for customer id {}", customerId);
 		this.transactionService.addCustomerTransaction(this.transactionDtoMapper.map(transactionDto), customerId);
 	}
 	
@@ -48,6 +49,7 @@ public class TransactionController {
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	public List<TransactionDto> getAllTransactions() {
+		LOGGER.debug("Get all transactions");
 		return this.transactionDtoMapper.map(this.transactionService.getAllTransactions());
 	}
 }

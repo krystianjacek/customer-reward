@@ -11,6 +11,4 @@ public interface CustomerService {
 	List<Customer> getCustomers();
 	
 	Customer getCustomer(final long customerId);
-	
-	void updateCustomer(final Customer customer);
 }

@@ -40,16 +40,18 @@ public class CustomerController {
 	)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void addCustomer(@RequestBody final CustomerDto customerDto) {
+		LOGGER.debug("Adding new customer {}", customerDto);
 		this.customerService.addCustomer(this.customerDtoMapper.map(customerDto));
 	}
 	
 	@GetMapping(
-			path = "/{customerId}",
+			path = "customerId/{customerId}",
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	public CustomerDto getCustomer(@PathVariable final long customerId) {
+		LOGGER.debug("Get customer for id {}", customerId);
 		return this.customerDtoMapper.map(this.customerService.getCustomer(customerId));
 	}
 	
@@ -59,6 +61,7 @@ public class CustomerController {
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	public List<CustomerDto> getCustomers() {
+		LOGGER.debug("Get all customers");
 		return this.customerDtoMapper.map(this.customerService.getCustomers());
 	}
 }

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jacek.customerreward.webapp.backend.dao.mapper.CustomerMapper;
 import com.jacek.customerreward.webapp.backend.dao.repository.CustomerRepository;
+import com.jacek.customerreward.webapp.backend.exception.UserNotFoundException;
 import com.jacek.customerreward.webapp.backend.model.Customer;
 import com.jacek.customerreward.webapp.backend.service.CustomerService;
 
@@ -41,13 +42,6 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	public Customer getCustomer(final long customerId) {
-		//FIXME:
-		return this.customerRepository.findById(customerId).map(this.customerMapper::map).orElseThrow(RuntimeException::new);
+		return this.customerRepository.findById(customerId).map(this.customerMapper::map).orElseThrow(() -> new UserNotFoundException("User with id " + customerId + " not found!"));
 	}
-	
-	@Override
-	public void updateCustomer(final Customer customer) {
-	
-	}
-	
 }
