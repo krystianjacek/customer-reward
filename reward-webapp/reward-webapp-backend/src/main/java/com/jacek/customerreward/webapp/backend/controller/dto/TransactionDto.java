@@ -18,4 +18,7 @@ public class TransactionDto {
 	private long id;
 	
 	private BigDecimal price;
+	
+	//FIXME:
+	//add date of transaction
 }

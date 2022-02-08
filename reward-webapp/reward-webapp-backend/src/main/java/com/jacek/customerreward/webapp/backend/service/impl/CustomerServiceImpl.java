@@ -1,5 +1,7 @@
 package com.jacek.customerreward.webapp.backend.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -30,4 +32,21 @@ public class CustomerServiceImpl implements CustomerService {
 	public void addCustomer(final Customer customer) {
 		this.customerRepository.save(this.customerMapper.map(customer));
 	}
+	
+	@Override
+	public List<Customer> getCustomers() {
+		return this.customerMapper.map(this.customerRepository.findAll());
+	}
+	
+	@Override
+	public Customer getCustomer(final long customerId) {
+		//FIXME:
+		return this.customerRepository.findById(customerId).map(this.customerMapper::map).orElseThrow(RuntimeException::new);
+	}
+	
+	@Override
+	public void updateCustomer(final Customer customer) {
+	
+	}
+	
 }

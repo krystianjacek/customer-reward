@@ -1,5 +1,7 @@
 package com.jacek.customerreward.webapp.backend.controller.dto;
 
+import java.util.List;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,5 +17,9 @@ import lombok.ToString;
 public class CustomerDto {
 	private Long id;
 	
-	private String userName;
+	private String firstName;
+	
+	private String lastName;
+	
+	private List<TransactionDto> transactions;
 }

@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 import com.jacek.customerreward.webapp.backend.model.Transaction;
 
-public class RewardPointsCalculator {
+public final class RewardPointsCalculator {
 	
 	private static final BigInteger SECOND_THRESHOLD = new BigInteger("100");
 	
