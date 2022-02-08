@@ -7,6 +7,13 @@
   * build application in maven ```mvn clean install```
   * run application by IntelliJ or by command ```mvn spring-boot:run```
 
+## Database access:
+http://localhost:8080/h2-console/login.jsp
+```
+user: sa
+password: password
+```
+
 ## REST endpoints:
 Basic test data is loaded along with application start.
 
