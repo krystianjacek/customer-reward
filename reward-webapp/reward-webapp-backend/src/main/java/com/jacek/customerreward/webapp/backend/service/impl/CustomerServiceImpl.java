@@ -31,8 +31,9 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	@Transactional
-	public void addCustomer(final Customer customer) {
-		this.customerRepository.save(this.customerMapper.map(customer));
+	public Customer addCustomer(final Customer customer) {
+		return this.customerMapper.map(
+				this.customerRepository.save(this.customerMapper.map(customer)));
 	}
 	
 	@Override

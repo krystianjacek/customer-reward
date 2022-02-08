@@ -6,7 +6,7 @@ import com.jacek.customerreward.webapp.backend.model.Customer;
 
 public interface CustomerService {
 	
-	void addCustomer(final Customer customer);
+	Customer addCustomer(final Customer customer);
 	
 	List<Customer> getCustomers();
 	

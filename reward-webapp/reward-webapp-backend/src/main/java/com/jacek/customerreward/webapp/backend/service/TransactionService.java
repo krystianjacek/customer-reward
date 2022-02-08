@@ -6,7 +6,7 @@ import com.jacek.customerreward.webapp.backend.model.Transaction;
 
 public interface TransactionService {
 	
-	void addCustomerTransaction(final Transaction transaction, final long customerId);
+	Transaction addCustomerTransaction(final Transaction transaction, final long customerId);
 	
 	List<Transaction> getAllTransactions();
 	

@@ -38,7 +38,7 @@ public class TransactionServiceImpl implements TransactionService {
 	
 	@Override
 	@Transactional
-	public void addCustomerTransaction(final Transaction transaction, final long customerId) {
+	public Transaction addCustomerTransaction(final Transaction transaction, final long customerId) {
 		final TransactionEntity transactionEntity = TransactionEntity
 				.builder()
 				.price(transaction.getPrice())
@@ -46,7 +46,7 @@ public class TransactionServiceImpl implements TransactionService {
 				.customer(this.customerRepository.findById(customerId).orElseThrow(() -> new UserNotFoundException("User with id " + customerId + " not found!")))
 				.build();
 		
-		this.transactionRepository.save(transactionEntity);
+		return this.transactionMapper.map(this.transactionRepository.save(transactionEntity));
 	}
 	
 	@Override
