@@ -38,7 +38,6 @@ public class CustomerEntity {
 	@Column(name = "last_name")
 	private String lastName;
 	
-	@OneToMany
-	@JoinColumn(name = "fk_customer")
-	private Set<TransactionEntity> transactions = new HashSet<>();
+	@OneToMany(mappedBy = "customer")
+	private Set<TransactionEntity> transactions;
 }

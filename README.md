@@ -1,4 +1,4 @@
-## Requirements to run
+## Requirements:
 * install java 15 or higher
 * install maven 3 or use bundled in IntelliJ
 * install CURL or Postman to execute rest requests
@@ -7,7 +7,7 @@
   * build application in maven ```mvn clean install```
   * run application by IntelliJ or by command ```mvn spring-boot:run```
 
-## Test of app
+## REST endpoints:
 Basic test data is loaded along with application start.
 
 Use postman or CURL to execute following scenarios:
@@ -37,5 +37,5 @@ curl -X GET localhost:8080/api/internal/reward/customerId/{customerId}/month
 curl -X GET localhost:8080/api/internal/reward/customerId/{customerId}/total
 ```
 
-## Api doc in swagger (works after run app)
+## Api doc - swagger
 http://localhost:8080/swagger-ui/

@@ -42,7 +42,6 @@ public class TransactionEntity {
 	@Column(name = "date")
 	private Instant date;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "fk_customer")
+	@ManyToOne
 	private CustomerEntity customer;
 }

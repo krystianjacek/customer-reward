@@ -1,6 +1,7 @@
 package com.jacek.customerreward.webapp.backend.service.impl;
 
 import java.time.Instant;
+import java.time.Period;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -65,7 +66,7 @@ public class TransactionServiceImpl implements TransactionService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Transaction> getLastMonthCustomerTransactions(final long customerId) {
-		final List<TransactionEntity> lastMonthCustomerTransactions = this.transactionRepository.getLastMonthCustomerTransactions(customerId);
+		final List<TransactionEntity> lastMonthCustomerTransactions = this.transactionRepository.getLastMonthCustomerTransactions(customerId, Instant.now().minus(Period.ofDays(30)));
 		LOGGER.debug("Found {} transactions for customer {}", lastMonthCustomerTransactions.size(), customerId);
 		return this.transactionMapper.map(lastMonthCustomerTransactions);
 	}
